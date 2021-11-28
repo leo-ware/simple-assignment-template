@@ -1,18 +1,18 @@
-# setup git
-git init
-git add .
-git commit -m "Initial commit"
-
 # setup virtual environment
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
 # configure notebook metadata
-echo "author: "
-read author
-echo "title: "
-read title
+python -c "
+import json
+notebook = json.load(open('notebook.ipynb'))
+notebook['metadata']['author'] = input('Author: ')
+notebook['metadata']['title'] = input('Title: ')
+json.dump(notebook, open('notebook.ipynb', 'w'))
+"
 
-sed -i "s/author: .*/author: $author/" notebook.ipynb
-sed -i "s/title: .*/title: $title/" notebook.ipynb
+# setup git
+git init
+git add .
+git commit -m "Initial commit"
