@@ -1,5 +1,5 @@
 # configure notebook metadata
-python -c "
+python3 -c "
 import json
 notebook = json.load(open('notebook.ipynb'))
 notebook['metadata']['author'] = input('Author: ')
@@ -8,9 +8,9 @@ json.dump(notebook, open('notebook.ipynb', 'w'))
 "
 
 # setup virtual environment
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 # setup git
 git init
